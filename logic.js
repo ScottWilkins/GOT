@@ -37,7 +37,7 @@ var graph = {
 }
 
 var width = 1450;
-    height = 703;
+    height = 600;
 
 var force = d3.layout.force()
     .size([width, height])
@@ -47,7 +47,7 @@ var force = d3.layout.force()
 
 var drag = force.drag()
     .on("dragstart", dragstart);
-
+ //var svg = d3.select("body").insert("svg",":first-child")
 var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height)
@@ -56,11 +56,11 @@ var svg = d3.select("body").append("svg")
     svg.append("defs").append("pattern")
     .attr("id","image")
     .attr("patternUnits","userSpaceOnUse")
-    .attr("height", "700")
-    .attr("width","1450")
+    .attr("height", "600")
+    .attr("width","1550")
     .append("image").attr("x","0")
-    .attr("y","0").attr("height","700")
-    .attr("width","1450")
+    .attr("y","0").attr("height","600")
+    .attr("width","1550")
     .attr("xlink:href","./resources/GOT-sigils.jpg")
 
 var link = svg.selectAll(".link"),
@@ -79,15 +79,11 @@ var link = svg.selectAll(".link"),
   node = node.data(graph.nodes)
     .enter().append("circle")
       .attr("class", "node")
-      .attr("r", 110)
+      .attr("r", 90)
       .attr("fill","url(#image)")
       .on("dblclick", dblclick)
       .call(drag);
 
-      // .append("svg:image")
-      // .attr("xlink:href", "img/icons/sun.svg")
-      // .attr("width", 40)
-      // .attr("height", 40)
 function tick() {
   link.attr("x1", function(d) { return d.source.x; })
       .attr("y1", function(d) { return d.source.y; })
@@ -105,3 +101,5 @@ function dblclick(d) {
 function dragstart(d) {
   d3.select(this).classed("fixed", d.fixed = true);
 }
+var footer = document.createElement('footer');
+$('body').append(footer)
