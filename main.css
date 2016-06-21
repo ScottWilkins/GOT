@@ -36,7 +36,7 @@ header {
   color: #bbb;
   display: flex;
   justify-content: space-around;
-  align-items: flex-end;
+  align-items: center;
   background-color: #222;
   width: 100vw;
   height: 20vh;

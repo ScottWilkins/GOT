@@ -5,10 +5,9 @@ $(document).ready(function(){
      $.ajax({
             type: "GET",
             dataType: 'json',
-            url: 'http://www.anapioficeandfire.com/api/houses?name='+id,
+            url: 'http://www.anapioficeandfire.com/api/houses/'+id,
             success: function(result){
-            //result = JSON.stringify(result)
-            name = result["0"].name;
+            name = result.name;
              var h1 = document.createElement("h1");
              $(h1).html(name)
              $('body').append(h1)
