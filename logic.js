@@ -37,7 +37,7 @@ var graph = {
 }
 
 var width = 1450;
-    height = 600;
+    height = 570;
 
 var force = d3.layout.force()
     .size([width, height])
@@ -48,7 +48,7 @@ var force = d3.layout.force()
 var drag = force.drag()
     .on("dragstart", dragstart);
  //var svg = d3.select("body").insert("svg",":first-child")
-var svg = d3.select("body").append("svg")
+var svg = d3.select(".main").append("svg")
     .attr("width", width)
     .attr("height", height)
     .attr("id", "svg");
@@ -56,11 +56,11 @@ var svg = d3.select("body").append("svg")
     svg.append("defs").append("pattern")
     .attr("id","image")
     .attr("patternUnits","userSpaceOnUse")
-    .attr("height", "600")
-    .attr("width","1550")
-    .append("image").attr("x","0")
-    .attr("y","0").attr("height","600")
-    .attr("width","1550")
+    .attr("height", "570")
+    .attr("width","2700")
+    .append("image").attr("x","-600")
+    .attr("y","0").attr("height","570")
+    .attr("width","2700")
     .attr("xlink:href","./resources/GOT-sigils.jpg")
 
 var link = svg.selectAll(".link"),
@@ -101,5 +101,3 @@ function dblclick(d) {
 function dragstart(d) {
   d3.select(this).classed("fixed", d.fixed = true);
 }
-var footer = document.createElement('footer');
-$('body').append(footer)
