@@ -46,9 +46,10 @@ header {
   width: 35px;
   margin: 7px;
 }
-.sigil:hover {
+.glow:hover {
   animation: shadowThrob 0.9s infinite;
   animation-direction: alternate;
+  cursor: pointer
 }
 @keyframes shadowThrob {
   from {box-shadow: 0 0 0 0 rgba(190,190,255, 0.7);}
@@ -69,9 +70,22 @@ footer {
  background-color: #222;
 }
  .container {
+  display: flex;
+  justify-content: flex-start;
   width: 1450px;
   height: 570px;
   background-color: #000;
   color: #bbb;
+  overflow: scroll;
+}
+iframe{
+  height: 600px;
+  width: 1200px;
+}
+.house-container {
+  color: #bbb;
+  background-color: #000;
+  height: 570px;
+  width: 350px;
   overflow: scroll;
 }
