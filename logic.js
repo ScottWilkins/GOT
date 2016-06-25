@@ -38,7 +38,7 @@ var graph = {
 }
 
 var width = 1450;
-    height = 570;
+    height = 593;
 
 var force = d3.layout.force()
     .size([width, height])

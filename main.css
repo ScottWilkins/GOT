@@ -42,8 +42,8 @@ header {
   background-color: #222;
   width: 100vw;
   height: 20vh;
-     border: solid 2px #000;
-  border-radius: 5px;
+  border: solid 1px #000;
+
 }
 .sigil {
   height: 35px;
@@ -72,20 +72,20 @@ header {
 footer {
  height: 5vh;
  background-color: #222;
-    border: solid 2px #000;
-  border-radius: 5px;
+ border: solid 1px #000;
+
 }
  .container {
   display: flex;
   justify-content: flex-start;
-  width: 1450px;
-  height: 600px;
+  width: 100%;
+  height: 595px;
   background-color: #000;
   color: #bbb;
   overflow: scroll;
 }
 iframe{
-  height: 600px;
+  height: 595px;
   width: 80vw;
   opacity:0.7;
 
@@ -93,10 +93,10 @@ iframe{
 .house-container {
   color: #bbb;
   background-color: #222;
-  height: 600px;
-  width: 240px;
+  height: 595px;
+  width: 245px;
   overflow: scroll;
-   border-right: solid 2px #000;
+  border-right: solid 1px #000;
   border-radius: 5px;
 }
 h3 {
@@ -108,6 +108,9 @@ h3 {
   border-radius: 5px;
   position: fixed;
   background-color: #222;
+}
+h2,h4 {
+  margin: 10px;
 }
 li {
   display: inline-block;;
@@ -121,4 +124,18 @@ ul {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+.background {
+  color: #bbb;
+  background-color: #000;
+  height: 595px;
+  width: 100vw;
+  overflow: scroll;
+}
+.houseInfo {
+  display:flex;
+}
+h4 {
+ font-size: 16px;
+ font-family: verdana
 }

@@ -119,20 +119,66 @@ var housePics = {
     $(li).append(img)
   }
 
-  function createMemberIframeEvent(){
+  function createMemberIframeEvent() {
     $('iframe').remove()
     $('.main').css("background-image","none")
     var name = $(this).text();
     $('<iframe>', {
        src: 'http://awoiaf.westeros.org/index.php/' + name,
-       class:  'myFrame',
+       class:  'iFrame',
        frameborder: 0,
     })
       .appendTo('.main');
   }
-  function createHouseEvent() {
+  function createHouseEvent(func) {
+
     var id = this.id;
     callAjax(id, 'http://www.anapioficeandfire.com/api/houses/', createHouse, 'json', id)
+  }
+  function showHouseInfo() {
+    var id = this.id;
+    $('.container').fadeOut("100", function(){
+      console.log(id);
+      callAjax(id, 'http://www.anapioficeandfire.com/api/houses/', houseInfo, 'json', id)
+    })
+  }
+  function hideHouseInfo(){
+
+    $('.container').fadeIn("slow", function(){
+        $('.houseInfo').fadeOut("fast")
+    })
+
+  }
+  function houseInfo(data, id){
+    console.log(data);
+    var founded = data.founded || "Long, long ago"
+    var words = data.words || "Data not found, but surely they are epic"
+    var houseName = data.name
+    var houseRegion = data.region
+    var coatOfArms = data.coatOfArms
+    var houseText =  document.createElement('h2')
+    var houseDiv = document.createElement('div')
+    var img = document.createElement('img')
+    var imgDiv = document.createElement('div')
+    var textDiv = document.createElement('div')
+    textDiv.className = "textDiv"
+    houseDiv.className = houseInfo
+    $(img).attr("src", housePics[id]).
+      attr("height", "595px")
+    img.setAttribute("style","-webkit-filter:brightness(180%)")
+    $(houseText).html(houseName).
+      append(`<h4>Region:  ${houseRegion}</h4>`).
+      append(`<h4>Coat of Arms:  ${coatOfArms}</h4>`).
+      append(`<h4>Words:  ${words}</h4>`).
+      append(`<h4>Founded:  ${founded}</h4>`)
+    $(imgDiv).append(img)
+    $(textDiv).append(houseText)
+    $(houseDiv).append(imgDiv).
+      append(textDiv).
+      hide()
+    $('.background').append(houseDiv)
+    $(houseDiv).fadeIn("fast")
+    //console.log([data, id]);
   }
   function htmlIfy(str){
     return str.replace(" ","%20")
@@ -142,4 +188,9 @@ var housePics = {
      splashPageInit()
      $('.sigil').on("click", createHouseEvent)
      $(document).on('click', '.sworn-member', createMemberIframeEvent)
+     $(document).hoverIntent({
+         over: showHouseInfo,
+         out: hideHouseInfo,
+         selector: '.sigil'
+     });
   })
