@@ -1,3 +1,4 @@
+function splashPageInit(){
 var graph = {
   "nodes": [
     {"x": 469, "y": 410},
@@ -79,7 +80,7 @@ var link = svg.selectAll(".link"),
   node = node.data(graph.nodes)
     .enter().append("circle")
       .attr("class", "node")
-      .attr("r", 90)
+      .attr("r", 100)
       .attr("fill","url(#image)")
       .on("dblclick", dblclick)
       .call(drag);
@@ -100,4 +101,5 @@ function dblclick(d) {
 
 function dragstart(d) {
   d3.select(this).classed("fixed", d.fixed = true);
+}
 }

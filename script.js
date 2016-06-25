@@ -12,6 +12,7 @@
 //more styling
 //think of new functionality
 //test on big screen
+//
 
 var housePics = {
   362:"./resources/stark.jpg",
@@ -68,35 +69,37 @@ var housePics = {
   function createHouse(data, id){
     removeSplash();
     var houseName = data.name;
-    var h1 = document.createElement("h1");
+    var spacer = document.createElement('div')
+    var h3 = document.createElement("h3")
     var ul = document.createElement('ul')
+    $(spacer).css( "height", "90px" );
     ul.className = ('swornMembers')
-     $(h1).html(houseName)
-     $('.main').css('background-image', 'url(' + housePics[id] + ')')
-     $('.house-container').append(h1)
+    $(h3).html(houseName)
+    $('.main').css('background-image', 'url(' + housePics[id] + ')')
+    $('.house-container').append(h3).append(spacer)
      .append(ul)
-     data.swornMembers.forEach(function(member) {callAjax("", member, createMemberArray, 'json')
+    data.swornMembers.forEach(function(member) {callAjax("", member, createMemberArray, 'json')
    });
   }
 
   function createMemberArray(data){
-
     var gender = data.gender
     var guyPic = '<img class="standInPic" src="./resources/sm-guy.png">'
     var girlPic = '<img class="standInPic" src="./resources/sm-girl.png">'
     var swornMember = data.name;
     var playedBy = data.playedBy[0];
     var li = document.createElement('li')
+    var span = document.createElement('span')
     li.className = "sworn-member glow"
-    $(li).html(swornMember)
-    if (playedBy){
-        callAjax(htmlIfy(playedBy),'https://api.themoviedb.org/3/search/person?api_key=6d797f03997e4b6fa4035391d0ebb660&query=',
-             createActorPic, 'jsonp', [li, playedBy])
-       } else {
-         $(".standInPic").css("height","50px").css("width", "50px")
-         gender === "Male" ? $(li).append(guyPic) : $(li).append(girlPic)
-       }
-    $('.swornMembers').append(li)
+    $(li).html(swornMember).appendTo(span)
+    // if (playedBy){
+    //     callAjax(htmlIfy(playedBy),'https://api.themoviedb.org/3/search/person?api_key=6d797f03997e4b6fa4035391d0ebb660&query=',
+    //          createActorPic, 'jsonp', [li, playedBy])
+    //    } else {
+    //      $(".standInPic").css("height","50px").css("width", "50px")
+    //      gender === "Male" ? $(li).append(guyPic) : $(li).append(girlPic)
+    //    }
+    $('.swornMembers').append(span)
   }
 
   function createActorPic(data, options){
@@ -115,17 +118,28 @@ var housePics = {
     $(li).append(` (played by ${actor})`)
     $(li).append(img)
   }
-  function createMemberIframe(){
-    console.log($(this).text());
+
+  function createMemberIframeEvent(){
+    $('iframe').remove()
+    $('.main').css("background-image","none")
+    var name = $(this).text();
+    $('<iframe>', {
+       src: 'http://awoiaf.westeros.org/index.php/' + name,
+       class:  'myFrame',
+       frameborder: 0,
+    })
+      .appendTo('.main');
+  }
+  function createHouseEvent() {
+    var id = this.id;
+    callAjax(id, 'http://www.anapioficeandfire.com/api/houses/', createHouse, 'json', id)
   }
   function htmlIfy(str){
     return str.replace(" ","%20")
   }
+
   $(document).ready(function(){
-     //$('.house-container').hide()
-     $('.sigil').on("click", function(){
-          var id = this.id;
-          callAjax(id, 'http://www.anapioficeandfire.com/api/houses/', createHouse, 'json', id)
-          })
-     $(document).on('click', '.sworn-member', createMemberIframe)
+     splashPageInit()
+     $('.sigil').on("click", createHouseEvent)
+     $(document).on('click', '.sworn-member', createMemberIframeEvent)
   })
