@@ -1,18 +1,3 @@
-//click on name, iframe opens
-  //give each name a class and event listener
-//close button for iframe
-  //hide iframe on click
-//button to install splash again
-//stretch out splash pattern
-//set glow to names
-  //make separate class for glow, unhitch from sigils
-//put names in separate div with pledged member title
-//make house title no-picture
-//add transitions
-//more styling
-//think of new functionality
-//test on big screen
-//
 
 var housePics = {
   362:"./resources/stark-house.jpg",
@@ -79,8 +64,11 @@ var housePics = {
     $('.main').css('background-image', 'url(' + housePics[id] + ')')
     $('.house-container').append(h3).append(spacer)
      .append(ul)
-    data.swornMembers.forEach(function(member) {callAjax("", member, createMemberArray, 'json')
-   });
+  //   data.swornMembers.forEach(function(member) {callAjax("", member, createMemberArray, 'json')
+  //  });
+  for (let member of data.swornMembers){
+    callAjax("", member, createMemberArray)
+  }
   }
 
   function createMemberArray(data){
@@ -129,15 +117,14 @@ var housePics = {
   }
   function showHouseInfo() {
     var id = this.id;
-    $('.container').fadeOut("100", function(){
+      $('iframe').hide()
       callAjax(id, 'http://www.anapioficeandfire.com/api/houses/', houseInfo, 'json', id)
-    })
+
   }
   function hideHouseInfo(){
+        $('.nameInfo').remove()
+        $('iframe').fadeIn("fast")
 
-    $('.container').fadeIn("slow", function(){
-        $('.houseInfo').fadeOut("fast")
-    })
   }
   function houseInfo(data, id){
     var founded = data.founded || "Long, long ago"
@@ -145,29 +132,28 @@ var housePics = {
     var houseName = data.name
     var houseRegion = data.region
     var coatOfArms = data.coatOfArms
-    var houseText =  document.createElement('h2')
-    var houseDiv = document.createElement('div')
+    var houseText =  document.createElement('div')
+    var nameDiv = document.createElement('div')
     var img = document.createElement('img')
     var imgDiv = document.createElement('div')
     var textDiv = document.createElement('div')
     textDiv.className = "textDiv"
-    houseDiv.className = houseInfo
+    nameDiv.className = "nameInfo"
     $(img).attr("src", housePics[id]).
       attr("height", "595px")
     img.setAttribute("style","-webkit-filter:brightness(180%)")
-    $(houseText).html(houseName).
+    $(houseText).append(`<h3>${houseName}</h3>`).
       append(`<h4>Region:  ${houseRegion}</h4>`).
-      append(`<h4>Coat of Arms:  ${coatOfArms}</h4>`).
+      //append(`<h4>Coat of Arms:  ${coatOfArms}</h4>`).
       append(`<h4>Words:  ${words}</h4>`).
       append(`<h4>Founded:  ${founded}</h4>`)
     $(imgDiv).append(img)
     $(textDiv).append(houseText)
-    $(houseDiv).append(imgDiv).
+    $(nameDiv).append(imgDiv).
       append(textDiv).
       hide()
-    $('.background').append(houseDiv)
-    $(houseDiv).fadeIn("fast")
-    //console.log([data, id]);
+    $('.main').append(nameDiv)
+    $(nameDiv).fadeIn("fast")
   }
   function htmlIfy(str){
     return str.replace(" ","%20")
@@ -190,7 +176,6 @@ var housePics = {
     var titlesArray = data.titles[0] || ["Inhabitant of Westoros"]
     var gender = data.gender
     var playedBy = data.playedBy[0] || "Not listed for the HBO series"
-    console.log("name: "+name+" born: "+born+" died: "+died+" culture: "+culture+" titles: "+titlesArray+" played by: "+playedBy );
     var nameText =  document.createElement('h2')
     var nameDiv = document.createElement('div')
     var img = document.createElement('img')

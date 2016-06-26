@@ -132,7 +132,7 @@ ul {
   width: 100vw;
   overflow: scroll;
 }
-.houseInfo, .nameInfo{
+.nameInfo{
   display:flex;
 }
 h4 {
@@ -141,4 +141,9 @@ h4 {
 }
 .textDiv {
   display: flex;
+  height: 595px;
+  flex-flow wrap;
+/*   justify-content:space-between;
+  align-items: center; */
+  overflow: scroll;
 }

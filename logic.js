@@ -57,12 +57,12 @@ var svg = d3.select(".main").append("svg")
     svg.append("defs").append("pattern")
     .attr("id","image")
     .attr("patternUnits","userSpaceOnUse")
-    .attr("height", "570")
+    .attr("height", "605")
     .attr("width","2700")
-    .append("image").attr("x","-600")
-    .attr("y","0").attr("height","570")
+    .append("image").attr("x","-650")
+    .attr("y","-10").attr("height","605")
     .attr("width","2700")
-    .attr("xlink:href","./resources/GOT-sigils.jpg")
+    .attr("xlink:href","./resources/GOT-sigils.png")
 
 var link = svg.selectAll(".link"),
     node = svg.selectAll(".node");
