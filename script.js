@@ -15,7 +15,7 @@
 //
 
 var housePics = {
-  362:"./resources/stark.jpg",
+  362:"./resources/stark-house.jpg",
   395:"./resources/tully-house.jpg",
   380:"./resources/tarth-house.jpg",
   72:"./resources/clegane-house.jpg",
@@ -71,6 +71,7 @@ var housePics = {
     var houseName = data.name;
     var spacer = document.createElement('div')
     var h3 = document.createElement("h3")
+    h3.className = 'h3Houses'
     var ul = document.createElement('ul')
     $(spacer).css( "height", "90px" );
     ul.className = ('swornMembers')
@@ -83,29 +84,20 @@ var housePics = {
   }
 
   function createMemberArray(data){
-    var gender = data.gender
-    var guyPic = '<img class="standInPic" src="./resources/sm-guy.png">'
-    var girlPic = '<img class="standInPic" src="./resources/sm-girl.png">'
     var swornMember = data.name;
-    var playedBy = data.playedBy[0];
     var li = document.createElement('li')
     var span = document.createElement('span')
     li.className = "sworn-member glow"
+    li.id = data.url
     $(li).html(swornMember).appendTo(span)
-    // if (playedBy){
-    //     callAjax(htmlIfy(playedBy),'https://api.themoviedb.org/3/search/person?api_key=6d797f03997e4b6fa4035391d0ebb660&query=',
-    //          createActorPic, 'jsonp', [li, playedBy])
-    //    } else {
-    //      $(".standInPic").css("height","50px").css("width", "50px")
-    //      gender === "Male" ? $(li).append(guyPic) : $(li).append(girlPic)
-    //    }
     $('.swornMembers').append(span)
   }
 
   function createActorPic(data, options){
-    var li = options[0]
+    var div = options[0]
     var actor = options[1]
     var img = document.createElement('img')
+    img.className = "actorImg"
     if(data.results.length > 0 &&
       (data.results[0].profile_path ? data.results[0].profile_path!==null : false)){//data.results[0].profile_path !== null){
       var id = data.results[0].profile_path;
@@ -113,13 +105,13 @@ var housePics = {
     } else {
       $(img).attr("src", "./resources/no-picture.png")
     }
-    $(img).css("height","70px")
-    .css("width", "50px")
-    $(li).append(` (played by ${actor})`)
-    $(li).append(img)
+    $(img).css("height","280px")
+    .css("width", "200px")
+    $(div).append(img)
   }
 
   function createMemberIframeEvent() {
+    $('.nameInfo').remove()
     $('iframe').remove()
     $('.main').css("background-image","none")
     var name = $(this).text();
@@ -138,7 +130,6 @@ var housePics = {
   function showHouseInfo() {
     var id = this.id;
     $('.container').fadeOut("100", function(){
-      console.log(id);
       callAjax(id, 'http://www.anapioficeandfire.com/api/houses/', houseInfo, 'json', id)
     })
   }
@@ -147,10 +138,8 @@ var housePics = {
     $('.container').fadeIn("slow", function(){
         $('.houseInfo').fadeOut("fast")
     })
-
   }
   function houseInfo(data, id){
-    console.log(data);
     var founded = data.founded || "Long, long ago"
     var words = data.words || "Data not found, but surely they are epic"
     var houseName = data.name
@@ -183,6 +172,55 @@ var housePics = {
   function htmlIfy(str){
     return str.replace(" ","%20")
   }
+  function hideMemberInfo(){
+        $('.nameInfo').fadeOut("fast").
+        remove()
+        $('iframe').show()
+  }
+  function showMemberInfo() {
+    $('iframe').hide()
+    var id = $(this).attr("id");
+      callAjax("", id, memberInfo, 'json')
+  }
+  function memberInfo(data){
+    var name = data.name
+    var born = data.born || "Age of Winter"
+    var died = data.died || "Alive (for now)"
+    var culture = data.culture || "Westorosi"
+    var titlesArray = data.titles[0] || ["Inhabitant of Westoros"]
+    var gender = data.gender
+    var playedBy = data.playedBy[0] || "Not listed for the HBO series"
+    console.log("name: "+name+" born: "+born+" died: "+died+" culture: "+culture+" titles: "+titlesArray+" played by: "+playedBy );
+    var nameText =  document.createElement('h2')
+    var nameDiv = document.createElement('div')
+    var img = document.createElement('img')
+    var imgDiv = document.createElement('div')
+    var textDiv = document.createElement('div')
+    var pic;
+    textDiv.className = "textDiv"
+    nameDiv.className = "nameInfo"
+    pic = gender === "Male" ?  "./resources/guy-tall.png" : "./resources/girl-tall.png"
+    $(img).attr("src", pic).
+      attr("height", "595px")
+    $(nameText).html(name).
+      append(`<h4>Title:  ${titlesArray}</h4>`).
+      append(`<h4>Culture:  ${culture}</h4>`).
+      append(`<h4>born:  ${born}</h4>`).
+      append(`<h4>died:  ${died}</h4>`).
+      append(`<h4>Played by:  ${playedBy}</h4>`)
+    $(imgDiv).append(img)
+    $(textDiv).append(nameText)
+    $(nameDiv).append(imgDiv).
+      append(textDiv)
+      if(playedBy !== "Not listed for the HBO series"){
+        callAjax(htmlIfy(playedBy),'https://api.themoviedb.org/3/search/person?api_key=6d797f03997e4b6fa4035391d0ebb660&query=',
+                createActorPic, 'jsonp', [textDiv, playedBy])
+              }
+    $(nameDiv).hide()
+    $('.main').append(nameDiv)
+    $(nameDiv).fadeIn("fast")
+
+  }
 
   $(document).ready(function(){
      splashPageInit()
@@ -192,5 +230,10 @@ var housePics = {
          over: showHouseInfo,
          out: hideHouseInfo,
          selector: '.sigil'
+     });
+     $(document).hoverIntent({
+         over: showMemberInfo,
+         out: hideMemberInfo,
+         selector: '.sworn-member'
      });
   })

@@ -50,6 +50,9 @@ header {
   width: 35px;
   margin: 7px;
 }
+.sigil-click {
+  font-family: GOT;
+}
 .glow:hover {
   animation: shadowThrob 0.9s infinite;
   animation-direction: alternate;
@@ -99,7 +102,7 @@ iframe{
   border-right: solid 1px #000;
   border-radius: 5px;
 }
-h3 {
+.h3Houses {
   padding:5px;
   width: 230px;
   text-align: center;
@@ -116,10 +119,7 @@ li {
   display: inline-block;;
   margin:10px;
 }
-ul:first-child {
-  background-color: red;
-  margin-top: 10px;
-}
+
 ul {
   display: flex;
   flex-direction: column;
@@ -132,10 +132,13 @@ ul {
   width: 100vw;
   overflow: scroll;
 }
-.houseInfo {
+.houseInfo, .nameInfo{
   display:flex;
 }
 h4 {
  font-size: 16px;
  font-family: verdana
+}
+.textDiv {
+  display: flex;
 }

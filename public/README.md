@@ -1,2 +1,0 @@
-# GOT
-GOT database
