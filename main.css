@@ -3,147 +3,143 @@
     src: url('./resources/Game of Thrones.ttf');
 }
 * {
-  font-family: GOT;
-  margin: 0;
-  padding: 0;
+    font-family: GOT;
+    margin: 0;
+    padding: 0;
 }
-
 body {
-  background-color: #000;
-
+    background-color: #000;
 }
-
-
 .link {
-  stroke: #fff;
-  stroke-width: 0.5px;
+    stroke: #fff;
+    stroke-width: 0.5px;
 }
-
 .node {
-  cursor: move;
-  /*fill: #ccc;*/
-  stroke: #000;
-  stroke-width: 1.5px;
+    cursor: move;
+    /*fill: #ccc;*/
+    stroke: #000;
+    stroke-width: 1.5px;
 }
-
 .node.fixed {
-  /*fill: #f00;*/
+    /*fill: #f00;*/
 }
 #svg {
-  background-image: url('./resources/18499_game_of_thrones.jpg');
-  background-size: 100%;
+    background-image: url('./resources/18499_game_of_thrones.jpg');
+    background-size: 100%;
 }
 header {
-  padding: 9px;
-  color: #bbb;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #222;
-  width: 100vw;
-  height: 20vh;
-  border: solid 1px #000;
-
+    padding: 9px;
+    color: #bbb;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #222;
+    width: 100vw;
+    height: 20vh;
+    border: solid 1px #000;
 }
 .sigil {
-  height: 35px;
-  width: 35px;
-  margin: 7px;
+    height: 35px;
+    width: 35px;
+    margin: 7px;
 }
 .sigil-click {
-  font-family: GOT;
+    font-family: GOT;
 }
 .glow:hover {
-  animation: shadowThrob 0.9s infinite;
-  animation-direction: alternate;
-  cursor: pointer
+    animation: shadowThrob 0.9s infinite;
+    animation-direction: alternate;
+    cursor: pointer
 }
 @keyframes shadowThrob {
-  from {box-shadow: 0 0 0 0 rgba(190,190,255, 0.7);}
-  to {box-shadow: 0 0 10px 10px rgba(190,190,255, 0.1);}
+    from {
+        box-shadow: 0 0 0 0 rgba(190, 190, 255, 0.7);
+    }
+    to {
+        box-shadow: 0 0 10px 10px rgba(190, 190, 255, 0.1);
+    }
 }
 #sigils {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap:wrap;
-  align-items: flex-start;
-  width: 485px;
-  height 100%;
-  box-shadow: inset 0 -1px 1px rgba(0,0,0,0.8), /*bottom internal shadow*/
-  inset 0 1px 1px rgba(200,200,200,1); /*top internal highlight*/
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 485px;
+    height 100%;
+    box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.8), /*bottom internal shadow*/
+    inset 0 1px 1px rgba(200, 200, 200, 1);
+    /*top internal highlight*/
 }
 footer {
- height: 5vh;
- background-color: #222;
- border: solid 1px #000;
-
+    height: 5vh;
+    background-color: #222;
+    border: solid 1px #000;
 }
- .container {
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-  height: 595px;
-  background-color: #000;
-  color: #bbb;
-  overflow: scroll;
+.container {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    height: 595px;
+    background-color: #000;
+    color: #bbb;
+    overflow: scroll;
 }
-iframe{
-  height: 595px;
-  width: 80vw;
-  opacity:0.7;
-
+iframe {
+    height: 595px;
+    width: 80vw;
+    opacity: 0.7;
 }
 .house-container {
-  color: #bbb;
-  background-color: #222;
-  height: 595px;
-  width: 245px;
-  overflow: scroll;
-  border-right: solid 1px #000;
-  border-radius: 5px;
+    color: #bbb;
+    background-color: #222;
+    height: 595px;
+    width: 245px;
+    overflow: scroll;
+    border-right: solid 1px #000;
+    border-radius: 5px;
 }
 .h3Houses {
-  padding:5px;
-  width: 230px;
-  text-align: center;
-  margin: 0;
-  border: solid 1px #000;
-  border-radius: 5px;
-  position: fixed;
-  background-color: #222;
+    padding: 5px;
+    width: 230px;
+    text-align: center;
+    margin: 0;
+    border: solid 1px #000;
+    border-radius: 5px;
+    position: fixed;
+    background-color: #222;
 }
-h2,h4 {
-  margin: 10px;
+h2, h4 {
+    margin: 10px;
 }
 li {
-  display: inline-block;;
-  margin:10px;
+    display: inline-block;
+    ;
+    margin: 10px;
 }
-
 ul {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 .background {
-  color: #bbb;
-  background-color: #000;
-  height: 595px;
-  width: 100vw;
-  overflow: scroll;
+    color: #bbb;
+    background-color: #000;
+    height: 595px;
+    width: 100vw;
+    overflow: scroll;
 }
-.nameInfo{
-  display:flex;
+.nameInfo {
+    display: flex;
 }
 h4 {
- font-size: 16px;
- font-family: verdana
+    font-size: 16px;
+    font-family: verdana
 }
 .textDiv {
-  display: flex;
-  height: 595px;
-  flex-flow wrap;
-/*   justify-content:space-between;
+    display: flex;
+    height: 595px;
+    flex-flow wrap;
+    /*   justify-content:space-between;
   align-items: center; */
-  overflow: scroll;
+    overflow: scroll;
 }
