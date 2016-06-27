@@ -93,7 +93,7 @@ iframe {
     color: #bbb;
     background-color: #222;
     height: 595px;
-    width: 245px;
+    width: 285px;
     overflow: scroll;
     border-right: solid 1px #000;
     border-radius: 5px;
@@ -126,7 +126,6 @@ ul {
     background-color: #000;
     height: 595px;
     width: 100vw;
-    overflow: scroll;
 }
 .nameInfo {
     display: flex;
@@ -139,7 +138,4 @@ h4 {
     display: flex;
     height: 595px;
     flex-flow wrap;
-    /*   justify-content:space-between;
-  align-items: center; */
-    overflow: scroll;
 }
