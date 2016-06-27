@@ -82,7 +82,7 @@ footer {
     height: 595px;
     background-color: #000;
     color: #bbb;
-    overflow: scroll;
+    overflow: hidden;
 }
 iframe {
     height: 595px;
@@ -97,6 +97,7 @@ iframe {
     overflow: scroll;
     border-right: solid 1px #000;
     border-radius: 5px;
+
 }
 .h3Houses {
     padding: 5px;
@@ -113,7 +114,6 @@ h2, h4 {
 }
 li {
     display: inline-block;
-    ;
     margin: 10px;
 }
 ul {
@@ -126,9 +126,11 @@ ul {
     background-color: #000;
     height: 595px;
     width: 100vw;
+    overflow: hidden;
 }
 .nameInfo {
     display: flex;
+
 }
 h4 {
     font-size: 16px;
